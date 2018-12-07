@@ -240,7 +240,7 @@ public class VMGroupListView extends ViewFlipper implements OnClickListener, OnL
                 if(!mGroupViewMap.containsKey(group.getName()))
                     mGroupViewMap.put(group.getName(), new ArrayList<VMGroupPanel>());
                 mGroupViewMap.get(group.getName()).add(groupView);
-                groupView.setBackgroundColor(VIEW_BACKGROUND);
+                groupView.setBackgroundColor(getResources().getColor(VIEW_BACKGROUND, null));
                 return groupView;
             }
             throw new IllegalArgumentException("Only views of type MachineView or VMGroupView are allowed");
@@ -374,7 +374,7 @@ public class VMGroupListView extends ViewFlipper implements OnClickListener, OnL
         }
     }
 
-    private class Dragger implements OnDragListener {
+    private class Dragger implements View.OnDragListener {
 
         private VMGroupPanel mGroupView;
         private GroupSection mSectionView;
@@ -406,7 +406,7 @@ public class VMGroupListView extends ViewFlipper implements OnClickListener, OnL
                     if(mGroupView!=null && current!=mGroupView) { //exited group panel
                         Log.d(TAG, "Exited " + mGroupView.getGroup());
                         mParentGroup=null;
-                        mGroupView.setBackgroundColor(VIEW_BACKGROUND);
+                        mGroupView.setBackgroundColor(getResources().getColor(VIEW_BACKGROUND, null));
                         mGroupView.invalidate();
                     }
                     if(current!=null && current!=mGroupView) { //entered group panel
@@ -427,14 +427,14 @@ public class VMGroupListView extends ViewFlipper implements OnClickListener, OnL
                     } else if(current!=null && mGroupView==null) { //exited root group
                         Log.v(TAG, "Exited Root");
                         mParentGroup=null;
-                        mSectionView.setBackgroundColor(VIEW_BACKGROUND);
+                        mSectionView.setBackgroundColor(getResources().getColor(VIEW_BACKGROUND, null));
                         mSectionView.invalidate();
                     }
                     mGroupView = current;
                     return true;
                 case DragEvent.ACTION_DRAG_EXITED:
                     mParentGroup = null;
-                    view.setBackgroundColor(VIEW_BACKGROUND);
+                    view.setBackgroundColor(getResources().getColor(VIEW_BACKGROUND, null));
                     view.invalidate();
                     return true;
                 case DragEvent.ACTION_DROP:
@@ -450,10 +450,10 @@ public class VMGroupListView extends ViewFlipper implements OnClickListener, OnL
                     return true;
                 case DragEvent.ACTION_DRAG_ENDED:
                     if(mGroupView!=null) {
-                        mGroupView.setBackgroundColor(VIEW_BACKGROUND);
+                        mGroupView.setBackgroundColor(getResources().getColor(VIEW_BACKGROUND, null));
                         mGroupView.invalidate();
                     }
-                    view.setBackgroundColor(VIEW_BACKGROUND);
+                    view.setBackgroundColor(getResources().getColor(VIEW_BACKGROUND, null));
                     view.invalidate();
                     mGroupView = null;
                     mDraggedGroup=null;

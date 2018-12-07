@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 
 import android.view.MenuItem;
@@ -67,7 +68,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements OnS
     }
 
     @Override
-    public void onBuildHeaders(List<Header> target) {
+    public void onBuildHeaders(List<PreferenceActivity.Header> target) {
         loadHeadersFromResource(R.xml.preference_headers, target);
     }
 
